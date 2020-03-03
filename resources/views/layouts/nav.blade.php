@@ -59,30 +59,18 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link text-white display-4" href="/gallery">
-                        <span class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
-                        Gallery
+                    <a class="nav-link link text-white display-4" href="/product">
+                        <span class="mbri-gift mbr-iconfont mbr-iconfont-btn"></span>
+                        Product
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link link text-white display-4" href="/news">
-                        <span class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                        <span class="mbri-help mbr-iconfont mbr-iconfont-btn"></span>
                         News
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link link text-white display-4" href="/product">
-                        <span class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
-                        Product
-                    </a>
-                </li>
             </ul>
-            <div class="navbar-buttons mbr-section-btn">
-                <a class="btn btn-sm btn-primary display-4" href="/">
-                    <span class="mbri-save mbr-iconfont mbr-iconfont-btn "></span>
-                    Try It Now!
-                </a>
-            </div>
         </div>
     </nav>
 </section>

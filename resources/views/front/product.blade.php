@@ -47,7 +47,7 @@
                                 <span class="icon-focus"></span>
                             </div>
                         </div>
-                        <div class="mbr-gallery-item mbr-gallery-item--p2" data-video-url="false" data-tags="酷">
+                        <div class="mbr-gallery-item mbr-gallery-item--p2" data-video-url="false" data-tags="藝術">
                             <div href="#lb-gallery2-9" data-slide-to="5" data-toggle="modal">
                                 <img src="assets/images/background6.jpg" alt="" title="">
                                 <span class="icon-focus"></span>

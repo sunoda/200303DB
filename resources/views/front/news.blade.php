@@ -1,10 +1,6 @@
 @extends('layouts/nav')
 @section('content')
 <section class="features3 cid-rS8CGfPRx1" id="features3-3">
-
-
-
-
     <div class="container" style="padding: 200px 0 100px">
         <div class="media-container-row">
             <div class="card p-3 col-12 col-md-6 col-lg-4">
@@ -27,7 +23,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="card p-3 col-12 col-md-6 col-lg-4">
                 <div class="card-wrapper">
                     <div class="card-img">
@@ -69,10 +64,7 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 </section>
-
 @endsection

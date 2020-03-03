@@ -36,6 +36,9 @@
                         <li>
                             <a href="/home/news" class="nav-link">最新消息</a>
                         </li>
+                        <li>
+                            <a href="/home/product" class="nav-link">商品訊息</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -80,7 +83,7 @@
     </div>
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}"></script>
-        
+
         @yield('js')
 </body>
 </html>

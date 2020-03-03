@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\News;
+use App\Products;
 use Illuminate\Http\Request;
 
-class NewsController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +13,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::all();
-        return view('auth.news.index',compact('news'));
+        $product = Products::all();
+        return view('auth.product.index',compact('product'));
     }
 
     /**
@@ -24,7 +24,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('auth.news.create');
+        return view('auth.product.create');
     }
 
     /**
@@ -35,10 +35,10 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        $news_data = $request -> all();
-        News::create($news_data);
-        $news = News::all();
-        return view('auth.news.index' , compact('news'));
+        $product_data = $request -> all();
+        Products::create($product_data);
+        $product = Products::all();
+        return view('auth.product.index' , compact('product'));
     }
 
     /**
@@ -49,7 +49,8 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Products::find($id);
+        return view('auth.product.edit', compact('product'));
     }
 
     /**
@@ -60,8 +61,7 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        $news = News::find($id);
-        return view('auth.news.edit', compact('news'));
+        //
     }
 
     /**
@@ -73,9 +73,7 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        News::find($id)->update($request->all());
-        $news = News::all();
-        return view('auth.news.index',compact('news'));
+        //
     }
 
     /**
@@ -84,10 +82,8 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy($id)
     {
-        News::find($id)->delete();
-        $news = News::all();
-        return view('auth.news.index', compact('news'));
+        //
     }
 }
