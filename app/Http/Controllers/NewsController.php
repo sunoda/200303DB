@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
@@ -37,9 +38,8 @@ class NewsController extends Controller
     {
         $news_data = $request -> all();
         // 上傳檔案
-        $file_name = $request ->file('img')->store('','public');
+        $file_name = $request->file('img')->store('','public');
         $news_data['img'] = $file_name;
-
         News::create($news_data);
         return redirect('/home/news');
     }
@@ -78,10 +78,21 @@ class NewsController extends Controller
     {
         $request_data = $request;
         $item = News::find($id);
+
         if($request->hasFile('img')){
-            Storage::delete(['img']);
+            // 刪除原有圖片
+            Storage::disk('public')->delete($item->img);
+
+            // $file = $request->file('img');
+            // $path = $this->fileUpload($file,'news');
+            // $request_data['img'] = $path;
+            $file_name = $request->file('img')->store('','public');
+            // $request['img'] = $file_name;
+            // dd($request_data['img']->path());
+            $request_data['img']->path() = $file_name;
+
         }
-        update($request->all());
+        $item->update($request->all());
         return redirect('/home/news');
     }
 
@@ -93,7 +104,12 @@ class NewsController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        News::find($id)->delete();
+        $item = News::find($id);
+        $origin_img = $item->img;
+        if(Storage::disk('public')->exists($origin_img)){
+        Storage::disk('public')->delete($origin_img);
+        }
+        $item->delete();
         return redirect('/home/news');
     }
 }

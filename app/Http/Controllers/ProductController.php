@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Products;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -76,7 +77,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         Products::find($id)->update($request->all());
         return redirect('/home/product');
     }
@@ -89,7 +90,12 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        Products::find($id)->delete();
+        $item = Products::find($id);
+        $origin_img = $item->img;
+        if(Storage::disk('public')->exists($origin_img)){
+        Storage::disk('public')->delete($origin_img);
+        }
+        $item->delete();
         return redirect('home/product');
     }
 }

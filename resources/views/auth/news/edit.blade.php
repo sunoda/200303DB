@@ -6,8 +6,11 @@
 <form method="POST" action="/home/news/update/{{$news->id}}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
+            <h2>原始圖片</h2>
+            <img src="/{{$news->img}}" alt="" width="300">
+          <hr>
           <label for="img">Img</label>
-          <input type="file" class="form-control" id="img" name="img" value={{$news->img}}>
+          <input type="file" class="form-control" id="img" name="img">
         </div>
         <div class="form-group">
           <label for="title">Title</label>
