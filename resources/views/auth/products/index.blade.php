@@ -8,27 +8,27 @@
 @section('content')
 
 <div class="container">
-<a href="/home/news/create" class="btn btn-success">新增</a>
+<a href="/home/product/create" class="btn btn-success">新增</a>
 <hr>
 <table id="example" class="table table-striped table-bordered" style="width:100%">
     <thead>
         <tr>
             <th>Img</th>
-            <th>Title</th>
-            <th>Content</th>
+            <th>tag</th>
+            <th>sort</th>
             <th width="80"></th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($news as $item)
+        @foreach ($product as $item)
         <tr>
             <td><img src="/{{$item->img}}" alt="" width="200"></td>
-            <td>{{$item->title}}</td>
-            <td>{{$item->content}}</td>
+            <td>{{$item->tag}}</td>
+            <td>{{$item->sort}}</td>
             <td>
-            <a href="/home/news/edit/{{$item->id}}" class="btn btn-success btn-sm">修改</a>
+            <a href="/home/product/edit/{{$item->id}}" class="btn btn-success btn-sm">修改</a>
             <button class="btn btn-danger btn-sm" href="delete-form-{{$item->id}}" onclick="show_confirm({{$item->id}})">刪除</button>
-                <form id="delete-form-{{$item->id}}" action="/home/news/delete/{{$item->id}}" method="POST" style="display: none;">
+                <form id="delete-form-{{$item->id}}" action="/home/product/delete/{{$item->id}}" method="POST" style="display: none;">
                     @csrf
                 </form>
 

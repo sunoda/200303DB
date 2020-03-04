@@ -14,7 +14,7 @@ class ProductController extends Controller
     public function index()
     {
         $product = Products::all();
-        return view('auth.product.index',compact('product'));
+        return view('auth.products.index',compact('product'));
     }
 
     /**
@@ -24,7 +24,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('auth.product.create');
+        return view('auth.products.create');
     }
 
     /**
@@ -36,9 +36,12 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $product_data = $request -> all();
+        // 上傳檔案
+        $file_name = $request ->file('img')->store('','public');
+        $product_data['img'] = $file_name;
+
         Products::create($product_data);
-        $product = Products::all();
-        return view('auth.product.index' , compact('product'));
+        return redirect('/home/product');
     }
 
     /**
@@ -49,8 +52,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Products::find($id);
-        return view('auth.product.edit', compact('product'));
+        //
     }
 
     /**
@@ -61,7 +63,8 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $products = Products::find($id);
+        return view('auth.products.edit', compact('products'));
     }
 
     /**
@@ -73,7 +76,9 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        Products::find($id)->update($request->all());
+        return redirect('/home/product');
     }
 
     /**
@@ -84,6 +89,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Products::find($id)->delete();
+        return redirect('home/product');
     }
 }

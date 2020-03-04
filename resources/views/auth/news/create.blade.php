@@ -3,11 +3,11 @@
 
 <div class="container">
     <h2>新增最新消息</h2>
-    <form method="POST" action="/home/news/store">
+    <form method="POST" action="/home/news/store" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
           <label for="img">Img</label>
-          <input type="text" class="form-control" id="img" name="img">
+          <input type="file" class="form-control" id="img" name="img">
         </div>
         <div class="form-group">
           <label for="title">Title</label>

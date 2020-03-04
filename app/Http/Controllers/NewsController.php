@@ -13,7 +13,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::all();
+        $news = News::all()->sortByDesc('sort');
         return view('auth.news.index',compact('news'));
     }
 
@@ -36,9 +36,12 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         $news_data = $request -> all();
+        // 上傳檔案
+        $file_name = $request ->file('img')->store('','public');
+        $news_data['img'] = $file_name;
+
         News::create($news_data);
-        $news = News::all();
-        return view('auth.news.index' , compact('news'));
+        return redirect('/home/news');
     }
 
     /**
@@ -73,9 +76,13 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        News::find($id)->update($request->all());
-        $news = News::all();
-        return view('auth.news.index',compact('news'));
+        $request_data = $request;
+        $item = News::find($id);
+        if($request->hasFile('img')){
+            Storage::delete(['img']);
+        }
+        update($request->all());
+        return redirect('/home/news');
     }
 
     /**
@@ -87,7 +94,6 @@ class NewsController extends Controller
     public function destroy(Request $request, $id)
     {
         News::find($id)->delete();
-        $news = News::all();
-        return view('auth.news.index', compact('news'));
+        return redirect('/home/news');
     }
 }

@@ -17,54 +17,14 @@
             <div class="mbr-gallery-row">
                 <div class="mbr-gallery-layout-default"><div>
                     <div>
-                        <div class="mbr-gallery-item mbr-gallery-item--p2" data-video-url="false" data-tags="酷">
+                        @foreach ($products as $item)
+                        <div class="mbr-gallery-item mbr-gallery-item--p2" data-video-url="false" data-tags="{{$item->tag}}">
                             <div href="#lb-gallery2-9" data-slide-to="0" data-toggle="modal">
-                                <img src="assets/images/background1.jpg" alt="" title="">
+                                <img src="{{$item->img}}" alt="" title="">
                                 <span class="icon-focus"></span>
                             </div>
                         </div>
-                        <div class="mbr-gallery-item mbr-gallery-item--p2" data-video-url="false" data-tags="響應式">
-                            <div href="#lb-gallery2-9" data-slide-to="1" data-toggle="modal">
-                                <img src="assets/images/background2.jpg" alt="" title="">
-                                <span class="icon-focus"></span>
-                            </div>
-                        </div>
-                        <div class="mbr-gallery-item mbr-gallery-item--p2" data-video-url="false" data-tags="創意">
-                            <div href="#lb-gallery2-9" data-slide-to="2" data-toggle="modal">
-                                <img src="assets/images/background3.jpg" alt="" title="">
-                                <span class="icon-focus"></span>
-                            </div>
-                        </div>
-                        <div class="mbr-gallery-item mbr-gallery-item--p2" data-video-url="false" data-tags="動畫">
-                            <div href="#lb-gallery2-9" data-slide-to="3" data-toggle="modal">
-                                <img src="assets/images/background4.jpg" alt="" title="">
-                                <span class="icon-focus"></span>
-                            </div>
-                        </div>
-                        <div class="mbr-gallery-item mbr-gallery-item--p2" data-video-url="false" data-tags="酷">
-                            <div href="#lb-gallery2-9" data-slide-to="4" data-toggle="modal">
-                                <img src="assets/images/background5.jpg" alt="" title="">
-                                <span class="icon-focus"></span>
-                            </div>
-                        </div>
-                        <div class="mbr-gallery-item mbr-gallery-item--p2" data-video-url="false" data-tags="藝術">
-                            <div href="#lb-gallery2-9" data-slide-to="5" data-toggle="modal">
-                                <img src="assets/images/background6.jpg" alt="" title="">
-                                <span class="icon-focus"></span>
-                            </div>
-                        </div>
-                        <div class="mbr-gallery-item mbr-gallery-item--p2" data-video-url="false" data-tags="響應式">
-                            <div href="#lb-gallery2-9" data-slide-to="6" data-toggle="modal">
-                                <img src="assets/images/background7.jpg" alt="" title="">
-                                <span class="icon-focus"></span>
-                            </div>
-                        </div>
-                        <div class="mbr-gallery-item mbr-gallery-item--p2" data-video-url="false" data-tags="動畫">
-                            <div href="#lb-gallery2-9" data-slide-to="7" data-toggle="modal">
-                                <img src="assets/images/background8.jpg" alt="" title="">
-                                <span class="icon-focus"></span>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -76,29 +36,11 @@
                 <div class="modal-content">
                     <div class="modal-body">
                         <div class="carousel-inner">
+                            @foreach ($products as $item)
                             <div class="carousel-item active">
-                                <img src="assets/images/background1.jpg" alt="" title="">
+                                <img src="{{$item->img}}" alt="" title="">
                             </div>
-                            <div class="carousel-item">
-                                <img src="assets/images/background2.jpg" alt="" title="">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/images/background3.jpg" alt="" title="">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/images/background4.jpg" alt="" title="">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/images/background5.jpg" alt="" title="">
-                            </div><div class="carousel-item">
-                                <img src="assets/images/background6.jpg" alt="" title="">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/images/background7.jpg" alt="" title="">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/images/background8.jpg" alt="" title="">
-                            </div>
+                            @endforeach
                         </div>
                         <a class="carousel-control carousel-control-prev" role="button" data-slide="prev" href="#lb-gallery2-9">
                             <span class="mbri-left mbr-iconfont" aria-hidden="true"></span>

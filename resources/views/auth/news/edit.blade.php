@@ -3,11 +3,11 @@
 
 <div class="container">
     <h2>修改最新消息</h2>
-<form method="POST" action="/home/news/update/{{$news->id}}">
+<form method="POST" action="/home/news/update/{{$news->id}}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
           <label for="img">Img</label>
-          <input type="text" class="form-control" id="img" name="img" value={{$news->img}}>
+          <input type="file" class="form-control" id="img" name="img" value={{$news->img}}>
         </div>
         <div class="form-group">
           <label for="title">Title</label>
@@ -16,6 +16,10 @@
         <div class="form-group">
             <label for="content">Content</label>
         <textarea type="text" class="form-control" id="content" name="content">{{$news->content}}</textarea>
+          </div>
+          <div class="form-group">
+            <label for="sort">sort</label>
+        <input type="number" min='0' class="form-control" id="sort" name="sort" value="{{$news->sort}}">
           </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
