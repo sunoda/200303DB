@@ -17,7 +17,7 @@ use Illuminate\Routing\RouteGroup;
 Route::get('/', 'FrontController@index');
 Route::get('/product', 'FrontController@product');
 Route::get('/news', 'FrontController@news');
-
+Route::get('/news/{id}', 'FrontController@news_content');
 
 Auth::routes();  //認證
 Route::group(['middleware' => ['auth'], 'prefix' => '/home'], function () { //登出後安全保護與加上前綴/home

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\News;
+use App\News_imgs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -40,7 +41,17 @@ class NewsController extends Controller
         // 上傳檔案
         $file_name = $request->file('img')->store('','public');
         $news_data['img'] = $file_name;
-        News::create($news_data);
+        $optionimg = News::create($news_data);
+
+        $files = $request->file('news_img');
+        foreach ($files as $img_file){
+            $path = $img_file->store('','public');
+
+            $news_imgs = new News_imgs;
+            $news_imgs->news_id = $optionimg->id;
+            $news_imgs->news_img_url = $path;
+            $news_imgs->save();
+        }
         return redirect('/home/news');
     }
 
@@ -76,23 +87,18 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request_data = $request;
+        $request_data = $request->all();
         $item = News::find($id);
-
+            // 判斷是否有更新圖片
         if($request->hasFile('img')){
             // 刪除原有圖片
             Storage::disk('public')->delete($item->img);
-
-            // $file = $request->file('img');
-            // $path = $this->fileUpload($file,'news');
-            // $request_data['img'] = $path;
+            // 上傳新的圖片
             $file_name = $request->file('img')->store('','public');
-            // $request['img'] = $file_name;
-            // dd($request_data['img']->path());
-            $request_data['img']->path() = $file_name;
+            $request_data['img'] = $file_name;
+            }
 
-        }
-        $item->update($request->all());
+        $item->update($request_data);
         return redirect('/home/news');
     }
 

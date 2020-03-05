@@ -22,7 +22,7 @@
     <tbody>
         @foreach ($product as $item)
         <tr>
-            <td><img src="/{{$item->img}}" alt="" width="200"></td>
+            <td><img src="{{asset('/storage/'.$item->img)}}" alt="" width="200"></td>
             <td>{{$item->tag}}</td>
             <td>{{$item->sort}}</td>
             <td>

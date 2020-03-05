@@ -20,4 +20,10 @@ class FrontController extends Controller
         $news = News::all()->sortByDesc('sort');
         return view('front/news', compact('news'));
     }
+    public function news_content($id)
+    {
+        $news = News::with('news_img')->find($id);
+
+        return view('front/news_content', compact('news'));
+    }
 }

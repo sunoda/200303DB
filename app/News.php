@@ -8,4 +8,10 @@ class News extends Model
 {
     protected $table = 'news';
     protected $fillable = ['img' , 'title' , 'content' , 'sort'];
+
+
+    public function news_img(){
+        return $this->hasMany('App\News_imgs');
+    }
 }
+

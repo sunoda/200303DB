@@ -1,14 +1,29 @@
 @extends('layouts/app')
-@section('content')
 
+@section('content')
 <div class="container">
     <h2>修改最新消息</h2>
 <form method="POST" action="/home/news/update/{{$news->id}}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <h2>原始圖片</h2>
-            <img src="/{{$news->img}}" alt="" width="300">
+            <br>
+            <img class="col-5"src="{{asset('/storage/'.$news->img)}}" alt="">
           <hr>
+          <hr>
+            <h2>多張圖片組</h2>
+            <br>
+            <div class="row">
+                @foreach ($news->news_img as $item)
+                    <div class="col-3">
+                        <button class="btn btn-danger">X</button>
+                        <img class="img-fluid" src="{{asset('/storage/'.$item->news_img_url)}}" alt="">
+                        <input type="number" min='0' class="form-control" id="sort" name="sort" value="{{$item->sort}}">
+                    </div>
+                @endforeach
+            </div>
+          <hr>
+
           <label for="img">Img</label>
           <input type="file" class="form-control" id="img" name="img">
         </div>

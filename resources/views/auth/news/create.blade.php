@@ -6,16 +6,20 @@
     <form method="POST" action="/home/news/store" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-          <label for="img">Img</label>
-          <input type="file" class="form-control" id="img" name="img">
+          <label for="img">MainImg</label>
+          <input type="file" class="form-control" id="img" name="img" required>
         </div>
         <div class="form-group">
+            <label for="news_img">Img</label>
+            <input type="file" class="form-control" id="news_img" name="news_img[]" multiple>
+          </div>
+        <div class="form-group">
           <label for="title">Title</label>
-          <input type="text" class="form-control" id="title" name="title">
+          <input type="text" class="form-control" id="title" name="title" required>
         </div>
         <div class="form-group">
             <label for="content">Content</label>
-            <input type="text" class="form-control" id="content" name="content">
+            <input type="text" class="form-control" id="content" name="content" required>
           </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>

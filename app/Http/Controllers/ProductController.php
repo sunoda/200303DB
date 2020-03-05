@@ -77,8 +77,19 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request_data = $request->all();
+        $item = Products::find($id);
 
-        Products::find($id)->update($request->all());
+            // 判斷是否有更新圖片
+        if($request->hasFile('img')){
+            // 刪除原有圖片
+            Storage::disk('public')->delete($item->img);
+            // 上傳新的圖片
+            $file_name = $request->file('img')->store('','public');
+            $request_data['img'] = $file_name;
+        }
+            // 更新資料
+        $item->update($request_data);
         return redirect('/home/product');
     }
 

@@ -20,7 +20,7 @@
                         @foreach ($products as $item)
                         <div class="mbr-gallery-item mbr-gallery-item--p2" data-video-url="false" data-tags="{{$item->tag}}">
                             <div href="#lb-gallery2-9" data-slide-to="0" data-toggle="modal">
-                                <img src="{{$item->img}}" alt="" title="">
+                                <img src="{{asset('/storage/'.$item->img)}}" alt="" title="">
                                 <span class="icon-focus"></span>
                             </div>
                         </div>
