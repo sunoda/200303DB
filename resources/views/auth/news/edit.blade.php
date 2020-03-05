@@ -1,5 +1,16 @@
 @extends('layouts/app')
 
+@section('css')
+    <style>
+        .col-3 .btn-danger{
+            border-radius: 50%;
+            position: absolute;
+            right: 0;
+            top:-1rem;
+        }
+    </style>
+@endsection
+
 @section('content')
 <div class="container">
     <h2>修改最新消息</h2>
@@ -16,7 +27,7 @@
             <div class="row">
                 @foreach ($news->news_img as $item)
                     <div class="col-3">
-                        <button class="btn btn-danger">X</button>
+                        <button type="button" class="btn btn-danger" data-imgDelete="{{$item->id}}">X</button>
                         <img class="img-fluid" src="{{asset('/storage/'.$item->news_img_url)}}" alt="">
                         <input type="number" min='0' class="form-control" id="sort" name="sort" value="{{$item->sort}}">
                     </div>
@@ -43,4 +54,18 @@
       </form>
 </div>
 
+@endsection
+
+
+@section('js')
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $('.col-3 .btn-danger').click(function(){
+        $('.col-3 .btn-danger').attr('data-imgDelete')
+    })
+</script>
 @endsection
