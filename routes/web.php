@@ -33,6 +33,9 @@ Route::post('/store', 'NewsController@store');
 Route::get('/edit/{id}', 'NewsController@edit');
 Route::post('/update/{id}', 'NewsController@update');
 Route::post('/delete/{id}', 'NewsController@destroy');
+// ajax
+Route::post('/ajax_delete_img','NewsController@ajax_delete_img');
+Route::post('/ajax_sort','NewsController@ajax_sort');
 });
 
 Route::group(['prefix' => 'product'], function () {

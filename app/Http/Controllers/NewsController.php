@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\News;
 use App\News_imgs;
+use Dotenv\Regex\Success;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -87,6 +88,7 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        dd($request->all());
         $request_data = $request->all();
         $item = News::find($id);
             // 判斷是否有更新圖片
@@ -97,8 +99,18 @@ class NewsController extends Controller
             $file_name = $request->file('img')->store('','public');
             $request_data['img'] = $file_name;
             }
-
         $item->update($request_data);
+
+        $optionimg = News::find($id);
+        $files = $request->file('news_img');
+        foreach ($files as $img_file){
+            $path = $img_file->store('','public');
+            $news_img = new News_imgs;
+            $news_img->news_id = $optionimg->id;
+            $news_img->news_img_url = $path;
+            $news_img->save();
+        }
+
         return redirect('/home/news');
     }
 
@@ -117,5 +129,30 @@ class NewsController extends Controller
         }
         $item->delete();
         return redirect('/home/news');
+    }
+
+    // ajax function
+    public function ajax_delete_img(Request $request){
+
+        $id = $request->imgDelete;
+
+        $item = News_imgs::find($id);
+        $origin_img = $item->news_img_url;
+        if(Storage::disk('public')->exists($origin_img)){
+            Storage::disk('public')->delete($origin_img);
+        }
+        $item->delete();
+        return $id;
+    }
+    public function ajax_sort(Request $request)
+    {
+        $sort = $request->sort;
+        $id = $request->img_id;
+
+        $img = News_imgs::find($id);
+        $img->sort = $sort;
+        $img->save();
+
+        return $img->sort;
     }
 }

@@ -2,6 +2,9 @@
 
 @section('css')
     <style>
+        .col-3{
+            margin: 0 0 1rem;
+        }
         .col-3 .btn-danger{
             border-radius: 50%;
             position: absolute;
@@ -17,26 +20,28 @@
 <form method="POST" action="/home/news/update/{{$news->id}}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
+            <hr>
             <h2>原始圖片</h2>
             <br>
             <img class="col-5"src="{{asset('/storage/'.$news->img)}}" alt="">
-          <hr>
-          <hr>
+            <br><br>
+            <input type="file" class="form-control" id="img" name="img">
+            <hr>
             <h2>多張圖片組</h2>
             <br>
             <div class="row">
                 @foreach ($news->news_img as $item)
-                    <div class="col-3">
-                        <button type="button" class="btn btn-danger" data-imgDelete="{{$item->id}}">X</button>
+                    <div class="col-3" data-imgDelete="{{$item->id}}">
+                        <button type="button" class="btn btn-danger" data-imgDelete={{$item->id}}>X</button>
                         <img class="img-fluid" src="{{asset('/storage/'.$item->news_img_url)}}" alt="">
-                        <input type="number" min='0' class="form-control" id="sort" name="sort" value="{{$item->sort}}">
+                        <input type="number" min='0' class="form-control" id="sort" name="sort" value="{{$item->sort}}" onchange="ajax_sort(this,{{$item->id}})">
                     </div>
                 @endforeach
             </div>
+            <input type="file" class="form-control" id="news_img" name="news_img[]" multiple>
           <hr>
 
-          <label for="img">Img</label>
-          <input type="file" class="form-control" id="img" name="img">
+
         </div>
         <div class="form-group">
           <label for="title">Title</label>
@@ -53,9 +58,7 @@
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
 </div>
-
 @endsection
-
 
 @section('js')
 <script>
@@ -65,7 +68,35 @@
         }
     });
     $('.col-3 .btn-danger').click(function(){
-        $('.col-3 .btn-danger').attr('data-imgDelete')
+        // console.log($(this).attr("data-imgDelete"))
+        $.ajax({
+                    method: 'POST',
+                    url: '/home/news/ajax_delete_img',
+                    data: {
+                        imgDelete:$(this).attr("data-imgDelete"),
+                    },
+                    success: function (res) {
+                        // console.log(res);
+                        $(`.col-3[data-imgDelete=${res}]`).remove();
+                    },
+
+                });
     })
+    function ajax_sort(element, img_id){
+        var element;
+        var img_id;
+        $.ajax({
+            method:'post',
+            url:'/home/news/ajax_sort',
+            data:{
+                img_id:img_id,
+                sort:element.value
+            },
+            success: function(res){
+                
+            }
+        })
+
+    }
 </script>
 @endsection
