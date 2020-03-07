@@ -47,7 +47,6 @@ class NewsController extends Controller
         $files = $request->file('news_img');
         foreach ($files as $img_file){
             $path = $img_file->store('','public');
-
             $news_imgs = new News_imgs;
             $news_imgs->news_id = $optionimg->id;
             $news_imgs->news_img_url = $path;
@@ -88,7 +87,7 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request->all());
+        // dd($request->all());
         $request_data = $request->all();
         $item = News::find($id);
             // 判斷是否有更新圖片
@@ -102,6 +101,7 @@ class NewsController extends Controller
         $item->update($request_data);
 
         $optionimg = News::find($id);
+        if($request->hasFile('news_img')){
         $files = $request->file('news_img');
         foreach ($files as $img_file){
             $path = $img_file->store('','public');
@@ -109,7 +109,7 @@ class NewsController extends Controller
             $news_img->news_id = $optionimg->id;
             $news_img->news_img_url = $path;
             $news_img->save();
-        }
+        }};
 
         return redirect('/home/news');
     }
