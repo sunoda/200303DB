@@ -72,7 +72,10 @@ class ProductTypesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request_data = $request->all();
+        $item =ProductTypes::find($id);
+        $item->update($request_data);
+        return redirect('/home/product_types');
     }
 
     /**
@@ -83,6 +86,8 @@ class ProductTypesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = ProductTypes::find($id);
+        $item->delete();
+        return redirect('home/product_types');
     }
 }

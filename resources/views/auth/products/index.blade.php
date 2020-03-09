@@ -13,23 +13,24 @@
 <table id="example" class="table table-striped table-bordered" style="width:100%">
     <thead>
         <tr>
-            <th>Img</th>
-            <th>type</th>
-            <th>sort</th>
-            <th>title</th>
-            <th>content</th>
+            <h2>商品</h2>
+            <th>圖片</th>
+            <th>類型</th>
+            <th>標題</th>
+            <th>內文</th>
+            <th>權重</th>
             <th width="80"></th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($product as $item)
+        @foreach ($products as $item)
         <tr>
             {{-- <td>{{$item->type}}</td> --}}
             <td><img src="{{asset('/storage/'.$item->img)}}" alt="" width="200"></td>
             <td>{{$item->type}}</td>
-            <td>{{$item->sort}}</td>
             <td>{{$item->title}}</td>
             <td>{{$item->content}}</td>
+            <td>{{$item->sort}}</td>
             <td>
             <a href="/home/product/edit/{{$item->id}}" class="btn btn-success btn-sm">修改</a>
             <button class="btn btn-danger btn-sm" href="delete-form-{{$item->id}}" onclick="show_confirm({{$item->id}})">刪除</button>

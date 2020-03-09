@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Products;
+use App\ProductTypes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,8 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = Products::all();
-        return view('auth.products.index',compact('product'));
+        $products = Products::find('type');
+        return view('auth.products.index',compact('products'));
     }
 
     /**
@@ -25,7 +26,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('auth.products.create');
+        $product_type = ProductTypes::all();
+        return view('auth.products.create', compact('product_type'));
     }
 
     /**

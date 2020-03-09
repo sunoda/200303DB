@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="container">
-    <h2>修改商品</h2>
+    <h2>修改商品類型</h2>
 <form method="POST" action="/home/product_types/update/{{$product_types->id}}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">

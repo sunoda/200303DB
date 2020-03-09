@@ -6,15 +6,31 @@
     <form method="POST" action="/home/product/store" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-          <label for="img">Img</label>
-          <input type="file" class="form-control" id="img" name="img" required>
+            <label for="img">圖片</label>
+            <input type="file" class="form-control" id="img" name="img" required>
         </div>
         <div class="form-group">
-          <label for="tag">Tag</label>
-          <input type="text" class="form-control" id="tag" name="tag" required>
+            <label for="type">類型</label>
+            <select class="form-control" id="type" name="type" required>
+            @foreach ($product_type->product as $item)
+            <option value="{{$item}}"></option>
+            @endforeach
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="title">標題</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+        </div>
+        <div class="form-group">
+            <label for="content">內文</label>
+            <textarea type="text" class="form-control" id="content" name="content" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="sort">權重</label>
+            <input type="number" class="form-control" id="sort" name="sort">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+    </form>
 </div>
 
 @endsection
