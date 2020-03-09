@@ -24,11 +24,13 @@ Route::group(['middleware' => ['auth'], 'prefix' => '/home'], function () { //�
 // 後台頁面連結
 Route::get('/', 'HomeController@index');
 
+
+// 最新消息
 Route::group(['prefix' => 'news'], function () {
-// 最新消息列表新增
+// 列表新增
 Route::get('/', 'NewsController@index');
 Route::get('/create', 'NewsController@create');
-// 最新消息編輯
+// 編輯
 Route::post('/store', 'NewsController@store');
 Route::get('/edit/{id}', 'NewsController@edit');
 Route::post('/update/{id}', 'NewsController@update');
@@ -38,15 +40,34 @@ Route::post('/ajax_delete_img','NewsController@ajax_delete_img');
 Route::post('/ajax_sort','NewsController@ajax_sort');
 });
 
+
+// 商品列表
 Route::group(['prefix' => 'product'], function () {
-// 商品列表新增
+// 新增
 Route::get('/', 'ProductController@index');
 Route::get('/create', 'ProductController@create');
-// 商品編輯
+// 商編輯
 Route::post('/store', 'ProductController@store');
 Route::get('/edit/{id}', 'ProductController@edit');
 Route::post('/update/{id}', 'ProductController@update');
 Route::post('/delete/{id}', 'ProductController@destroy');
 });
+
+
+// 商品類型
+Route::group(['prefix' => 'product_types'], function () {
+// 新增
+Route::get('/', 'ProductTypesController@index');
+Route::get('/create', 'ProductTypesController@create');
+// 編輯
+Route::post('/store', 'ProductTypesController@store');
+Route::get('/edit/{id}', 'ProductTypesController@edit');
+Route::post('/update/{id}', 'ProductTypesController@update');
+Route::post('/delete/{id}', 'ProductTypesController@destroy');
+});
+
+// summernote ImgUpload
+Route::post('/ajax_upload_img', 'ImgUploadController@ajax_upload_img');
+Route::post('/ajax_delete_img', 'ImgUploadController@ajax_delete_img');
 
 });

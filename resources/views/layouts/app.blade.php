@@ -37,7 +37,16 @@
                             <a href="/home/news" class="nav-link">最新消息</a>
                         </li>
                         <li>
-                            <a href="/home/product" class="nav-link">商品訊息</a>
+                            {{-- <a href="/home/product" class="nav-link">商品訊息</a> --}}
+                            <div class="dropdown">
+                                <button class="btn nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    商品訊息管理
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                  <a class="dropdown-item" href="/home/product_types">商品類型管理</a>
+                                  <a class="dropdown-item" href="/home/product">商品管理</a>
+                                </div>
+                            </div>
                         </li>
                     </ul>
 

@@ -66,27 +66,30 @@
 
 @section('js')
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
+<script src="{{ asset('js/summernote-zh-TW.js')}}"></script>
 <script>
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+
     $('.col-3 .btn-danger').click(function(){
         // console.log($(this).attr("data-imgDelete"))
         $.ajax({
-                    method: 'POST',
-                    url: '/home/news/ajax_delete_img',
-                    data: {
-                        imgDelete:$(this).attr("data-imgDelete"),
-                    },
-                    success: function (res) {
-                        // console.log(res);
-                        $(`.col-3[data-imgDelete=${res}]`).remove();
-                    },
+            method: 'POST',
+            url: '/home/news/ajax_delete_img',
+            data: {
+                imgDelete:$(this).attr("data-imgDelete"),
+            },
+            success: function (res) {
+                // console.log(res);
+                $(`.col-3[data-imgDelete=${res}]`).remove();
+            },
 
-                });
+        });
     })
+
     function ajax_sort(element, img_id){
         var element;
         var img_id;
@@ -101,8 +104,12 @@
             }
         })
     }
+    
     $(document).ready(function() {
-        $('#content').summernote();
+        $('#content').summernote({
+            height: 350,
+            lang: 'zh-TW'
+        });
     });
 </script>
 @endsection

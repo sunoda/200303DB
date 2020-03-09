@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Products extends Model
 {
     protected $table = 'products';
-    protected $fillable = ['img' , 'tag' , 'sort'];
+    protected $fillable = ['img' , 'type' , 'sort' , 'title' , 'content'];
 }

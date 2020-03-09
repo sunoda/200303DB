@@ -18,7 +18,7 @@
                 <div class="mbr-gallery-layout-default"><div>
                     <div>
                         @foreach ($products as $item)
-                        <div class="mbr-gallery-item mbr-gallery-item--p2" data-video-url="false" data-tags="{{$item->tag}}">
+                        <div class="mbr-gallery-item mbr-gallery-item--p2" data-video-url="false" data-tags="{{$item->type}}">
                             <div href="#lb-gallery2-9" data-slide-to="0" data-toggle="modal">
                                 <img src="{{asset('/storage/'.$item->img)}}" alt="" title="">
                                 <span class="icon-focus"></span>
