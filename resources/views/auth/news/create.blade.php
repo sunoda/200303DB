@@ -35,7 +35,6 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
 <script src="{{ asset('js/summernote-zh-TW.js')}}"></script>
 <script>
-
     $(document).ready(function() {
         $('#content').summernote({
             height: 350,
@@ -57,7 +56,6 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-
         $.upload = function (file) {
             let out = new FormData();
             out.append('file', file, file.name);
@@ -76,7 +74,6 @@
                 }
             });
         };
-
         $.delete = function (file_link) {
             $.ajax({
                 method: 'POST',
@@ -91,7 +88,5 @@
             });
         }
     });
-
-
 </script>
 @endsection

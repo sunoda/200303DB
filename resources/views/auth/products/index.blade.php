@@ -29,7 +29,7 @@
             <td><img src="{{asset('/storage/'.$item->img)}}" alt="" width="200"></td>
             <td>{{$item->type}}</td>
             <td>{{$item->title}}</td>
-            <td>{{$item->content}}</td>
+            <td>{!!$item->content!!}</td>
             <td>{{$item->sort}}</td>
             <td>
             <a href="/home/product/edit/{{$item->id}}" class="btn btn-success btn-sm">修改</a>
