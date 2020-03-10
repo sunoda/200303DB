@@ -1,0 +1,9 @@
+
+在向使用者顯示的 HTML 程式碼中使用這串網站金鑰。
+
+6LcgIeAUAAAAAH2QvXocORSn5IbmpQLXCV9QQfFR
+
+
+
+用這串密鑰來建立網站和 reCAPTCHA 之間的通訊。
+6LcgIeAUAAAAAGvjcEHdZIWkGU7-z2lDvYfx1yTf

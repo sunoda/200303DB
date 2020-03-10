@@ -9,6 +9,8 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    {!! ReCaptcha::htmlScriptTagJsApi() !!}
+
 
 
     <!-- Fonts -->

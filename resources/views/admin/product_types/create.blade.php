@@ -11,7 +11,7 @@
         </div>
         <div class="form-group">
           <label for="sort">權重</label>
-          <input type="number" min="0" class="form-control" id="sort" name="sort" required>
+          <input type="number" min="0" class="form-control" id="sort" name="sort" value="0">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>

@@ -12,8 +12,8 @@
         <div class="form-group">
             <label for="type">類型</label>
             <select class="form-control" id="type" name="type" required>
-            @foreach ($product_type->product as $item)
-            <option value="{{$item}}"></option>
+            @foreach ($product_types as $item)
+            <option value="{{$item->type}}">{{$item->type}}</option>
             @endforeach
             </select>
         </div>
@@ -27,7 +27,7 @@
         </div>
         <div class="form-group">
             <label for="sort">權重</label>
-            <input type="number" class="form-control" id="sort" name="sort">
+            <input type="number" class="form-control" id="sort" name="sort" value="0">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

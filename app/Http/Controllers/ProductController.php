@@ -15,7 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Products::find('type');
+        $products = Products::all();
+        $product_type = ProductTypes::all();
         return view('auth.products.index',compact('products'));
     }
 
@@ -26,8 +27,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $product_type = ProductTypes::all();
-        return view('auth.products.create', compact('product_type'));
+        $product_types = ProductTypes::all();
+        $products = Products::all();
+        return view('auth.products.create', compact('product_types' , 'products'));
     }
 
     /**
