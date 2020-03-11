@@ -9,7 +9,7 @@
   <link rel="shortcut icon" href="assets/images/logo2.png" type="image/x-icon">
   <meta name="description" content="">
 
-  <title>Home</title>
+  <title>MyBackEndTraining</title>
   <link rel="stylesheet" href="{{ asset('assets/web/assets/mobirise-icons/mobirise-icons.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap-grid.min.css')}}">
@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="{{ asset('assets/gallery/style.css')}}">
   <link rel="preload" as="style" href="{{ asset('assets/mobirise/css/mbr-additional.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/mobirise/css/mbr-additional.css')}}" type="text/css">
-
+  {!! ReCaptcha::htmlScriptTagJsApi() !!}
 
 
 </head>

@@ -1,9 +1,13 @@
 
-¦b¦V¨Ï¥ÎªÌÅã¥Üªº HTML µ{¦¡½X¤¤¨Ï¥Î³o¦êºô¯¸ª÷Æ_¡C
+ï¿½bï¿½Vï¿½Ï¥Îªï¿½ï¿½ï¿½Üªï¿½ HTML ï¿½{ï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½Ï¥Î³oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½C
 
 6LcgIeAUAAAAAH2QvXocORSn5IbmpQLXCV9QQfFR
 
 
 
-¥Î³o¦ê±KÆ_¨Ó«Ø¥ßºô¯¸©M reCAPTCHA ¤§¶¡ªº³q°T¡C
+ï¿½Î³oï¿½ï¿½Kï¿½_ï¿½Ó«Ø¥ßºï¿½ï¿½ï¿½ï¿½M reCAPTCHA ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½qï¿½Tï¿½C
 6LcgIeAUAAAAAGvjcEHdZIWkGU7-z2lDvYfx1yTf
+
+
+RECAPTCHA_SITE_KEY=6LcgIeAUAAAAAH2QvXocORSn5IbmpQLXCV9QQfFR
+RECAPTCHA_SECRET_KEY=6LcgIeAUAAAAAGvjcEHdZIWkGU7-z2lDvYfx1yTf

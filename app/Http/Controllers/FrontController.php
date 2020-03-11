@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use App\News;
+use App\Contact;
 use App\Products;
 use Illuminate\Http\Request;
 
@@ -25,5 +26,11 @@ class FrontController extends Controller
         $news = News::with('news_img')->find($id);
 
         return view('front/news_content', compact('news'));
+    }
+    public function contact(Request $request)
+    {
+        $contact = $request->all();
+        Contact::create($contact);
+        return redirect('/');
     }
 }

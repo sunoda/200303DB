@@ -1,3 +1,4 @@
+
 <?php
 /**
  * Copyright (c) 2017 - present
@@ -52,7 +53,7 @@ return [
      * IP addresses for which validation will be skipped
      *
      */
-    'skip_ip'                      => ["127.0.0.1"],
+    'skip_ip'                      => [],
 
     /**
      *
