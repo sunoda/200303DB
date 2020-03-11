@@ -79,7 +79,7 @@ return [
      * @since v3.6.0
      *
      */
-    'default_language'             => "php artisan config:cachezh-TW",
+    'default_language'             => "zh-TW",
 
     /**
      *

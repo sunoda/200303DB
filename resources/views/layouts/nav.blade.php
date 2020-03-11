@@ -9,7 +9,7 @@
   <link rel="shortcut icon" href="assets/images/logo2.png" type="image/x-icon">
   <meta name="description" content="">
 
-  <title>MyBackEndTraining</title>
+  <title>MyBackEnd</title>
   <link rel="stylesheet" href="{{ asset('assets/web/assets/mobirise-icons/mobirise-icons.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap-grid.min.css')}}">

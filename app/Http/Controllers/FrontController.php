@@ -29,8 +29,22 @@ class FrontController extends Controller
     }
     public function contact(Request $request)
     {
+        $request->validate([
+            $this->contactname() => 'required|string',
+            'email' => 'required|string',
+            'phone' => 'required|integer',
+            'message' => 'required|string',
+            'g-recaptcha-response' => 'recaptcha',
+            // OR since v4.0.0
+            recaptchaFieldName() => recaptchaRuleName()
+
+        ]);
+
         $contact = $request->all();
         Contact::create($contact);
         return redirect('/');
+    }
+    public function contactname(){
+        return 'name';
     }
 }
