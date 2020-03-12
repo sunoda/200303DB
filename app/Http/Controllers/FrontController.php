@@ -4,6 +4,7 @@ use App\News;
 use App\Contact;
 use App\Products;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FrontController extends Controller
 {
@@ -48,6 +49,30 @@ class FrontController extends Controller
         return 'name';
     }
     public function Product_content(){
+
+
         return view('front/Product_content');
+    }
+
+    public function add_cart(){
+        $productId = 1;
+        $Product = Products::find($productId); // assuming you have a Product model with id, name, description & price
+        $rowId = 456; // generate a unique() row ID
+        $userID = Auth::user()->id; // the user ID to bind the cart contents
+        // add the product to cart
+        \Cart::session($userID)->add(array(
+            'id' => $rowId,
+            'name' => $Product->title,
+            'price' => $Product->price,
+            'quantity' => 4,
+            'attributes' => array(),
+            'associatedModel' => $Product
+        ));
+        return redirect('/cart_total');
+    }
+    public function cart_total(){
+        $userID = Auth::user()->id;
+        $items = \Cart::session($userID)->getContent();
+        dd($items);
     }
 }

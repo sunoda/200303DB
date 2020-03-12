@@ -80,7 +80,7 @@
             </div>
             <div class="col-6">
                 <div class="product_title">
-                    <h2 id="title">Redmi Note 8T</h2>
+                    <h2 id="title" data-title="Redmi Note 8T">Redmi Note 8T</h2>
                     <div>3GB+32GB, 星際藍</div>
                     <div>NT$4,599</div>
                 </div>
@@ -124,18 +124,22 @@
                         {{-- <input type="text" id='selectColor' value="紅" hidden> --}}
                     </ul>
                 </div>
-                <div class="product_qty">
-                    <a id="minus" href="#">-</a>
-                    <input type="number" id="value" value="1">
-                    <a id="plus" href="#">+</a>
-                </div>
+                <form method="POST" action="/add_cart">
+                    @csrf
+                    <div class="product_qty">
+                        <a id="minus" href="#">-</a>
+                        <input type="number" id="value" value="1">
+                        <a id="plus" href="#">+</a>
+                    </div>
 
-                <div class="product_total">
-                    <input type="text" id="capacity" value="3GB+32GB">
-                    <input type="text" id="selectColor" value="紅">
+                    <div class="product_total">
+                        <input type="text" id="capacity" value="3GB+32GB" hidden>
+                        <input type="text" id="selectColor" value="紅" hidden>
+                        <span id="total"></span>
+                    </div>
                     <span id="total"></span>
-                </div>
-                <button type="submit">立即購買</button>
+                    <button type="submit">立即購買</button>
+                </form>
             </div>
         </div>
     </div>
@@ -178,7 +182,19 @@
             $('#minus').bind('click', {increment: -1}, incrementValue);
 
         });
-        var text = $('#total').text($('#id').text+$('#capacity'))
+        var title = $('#title').attr('data-title');
+        var capacity = $('.capacity.active').attr('data-capacity');
+        var qty = $('#value').attr('value');
+
+        var text = $('#total').text(title + ' ' + capacity + '*' + qty);
+        console.log($('.capacity.active').attr('data-capacity'));
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
 
 </script>
 @endsection
