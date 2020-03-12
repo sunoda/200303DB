@@ -47,4 +47,7 @@ class FrontController extends Controller
     public function contactname(){
         return 'name';
     }
+    public function Product_content(){
+        return view('front/Product_content');
+    }
 }
