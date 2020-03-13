@@ -35,6 +35,10 @@
             <textarea type="text" class="form-control" id="content" name="content" required>{!!$products->content!!}</textarea>
         </div>
         <div class="form-group">
+            <label for="price">價格</label>
+            <input type="number" class="form-control" id="price" name="price" value="{{$products->price}}" required>
+        </div>
+        <div class="form-group">
             <label for="sort">權重</label>
             <input type="number" class="form-control" id="sort" name="sort" value="{{$products->sort}}">
         </div>

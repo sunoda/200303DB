@@ -73,6 +73,6 @@ class FrontController extends Controller
     public function cart_total(){
         $userID = Auth::user()->id;
         $items = \Cart::session($userID)->getContent();
-        dd($items);
+        return view('front/cart_total');
     }
 }
