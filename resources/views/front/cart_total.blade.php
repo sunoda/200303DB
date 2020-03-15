@@ -2,243 +2,142 @@
 
 @section('css')
 <style>
-    .shopping_wrapper {
-        margin: 100px 20px;
-        padding: 10px 10px 10px 10px;
-        box-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
-        border-radius: 5px 5px;
-        background: rgba(255, 255, 255, 0.5);
+.Cart {
+  margin: 50px auto;
+}
 
-    }
-    .shopping_cart_header {
-        padding-bottom: 20px;
-        text-align: center;
-    }
-    .cart_items {
-        display: grid;
-        grid-template-columns:
-            100px minmax(300px, 1fr) minmax(50px, 100px) minmax(50px, 100px) 100px;
-        grid-auto-flow: dense;
-        grid-template-areas:
-            "item_image item_description item_nights item_total"
-            "sub_total sub_total sub_total sub_total";
+.Cart__header {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+  grid-gap: 2px;
+  margin-bottom: 2px;
+}
 
-        grid-gap: 5px;
+.Cart__headerGrid {
+  text-align: center;
+  background: #f3f3f3;
+}
 
-        padding: 10px 10px 10px 1px;
-        box-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
-        border-radius: 5px 5px;
-        background: rgba(255, 255, 255, 0.5);
+.Cart__product {
+  display: grid;
+  grid-template-columns: 2fr 7fr 3fr 3fr 3fr 3fr;
+  grid-gap: 2px;
+  margin-bottom: 2px;
+  height: 90px;
+}
 
-        left: 0%;
-        -moz-transition: all .75s ease;
-        -webkit-transition: all .75s ease;
-        -o-transition: all .75s ease;
-        transition: all .75s ease;
-    }
-    .animate_delete_cart_item {
-        /* Animate the item being removed from the shopping cart */
-        opacity: 0;
-        left: -100%;
-        margin-top: -100px;
-    }
-    .animate_delete_cart_item_mobile {
-        /* Animate the item being removed from the shopping cart */
-        opacity: 0;
-        left: -100%;
-        margin-top: -350px;
-    }
-    .cart_item_description {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, 1fr);
-        grid-gap: 10px;
-    }
-    .item_lot_number {
-        grid-column: span 3;
-    }
-    .totals {
-        display: grid;
-        grid-template-columns: 1fr 130px;
-        text-align: right !important;
-        grid-gap: 5px;
-        padding: 5px;
-        font-size: 16pt;
-    }
-    .cart_item_image {
-        padding: 5px;
-    }
-    .cart_item_total {
-        padding: 5px;
-        text-align: right;
-        align-self: center;
-    }
-    .cart_item_total,
-    .cart_item_nights {
-        font-size: 20px;
-    }
-    .remove_chart_item {
-        color: rgb(191, 9, 9);
-        background: transparent;
-        border: none;
-        font-size: 20pt;
-        padding: 10px;
+.Cart__productGrid {
+  padding: 5px;
+}
 
-        -moz-transition: background-color 0.3s ease;
-        -webkit-transition: background-color 0.3s ease;
-        -o-transition: background-color 0.3s ease;
-        transition: background-color 0.3s ease;
-    }
-    .remove_chart_item:hover {
-        background-color: rgba(221, 29, 29, 0.1);
-        border-radius: 5px;
-    }
-    .shopping_cart_checkout {
-        margin-top: 20px;
-        float: right;
-        width: 220px;
-        height: 50px;
-        border: none;
-        border: solid 2px rgb(13, 95, 2);
-        color: rgb(13, 95, 2);
-        border-radius: 5px;
-        background: rgba(255, 255, 255, 0);
-        font-size: 25px;
+.Cart__productImg {
+  background-image: url(https://fakeimg.pl/640x480/c0cfe8/?text=Img);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 
-        -moz-transition: background-color 0.3s ease;
-        -webkit-transition: background-color 0.3s ease;
-        -o-transition: background-color 0.3s ease;
-        transition: background-color 0.3s ease;
-    }
-    .shopping_cart_checkout:hover {
-        background: rgb(13, 95, 2);
-        color: white;
-    }
-    @media (max-width: 850px) {
-        .cart_items {
-            grid-template-columns: 1fr;
-            grid-template-areas:
-                "item_image"
-                "item_description"
-                "item_nights"
-                "item_total";
-            grid-gap: 0px;
-            padding: 5px;
-            margin-bottom: 5px;
-            /* text-align: center; */
-        }
-        .cart_item_total,
-        .cart_item_nights {
-            text-align: center;
-            font-size: 25px;
-            padding: 10px;
-            background-color: #f2f2f2;
-        }
-        .cart_item_description {
-            grid-template-columns: 1fr 1fr;
-            text-align: center;
-        }
-        .item_lot_number {
-            text-align: center;
-            grid-column: span 2;
-        }
-        .cart_item_description {
-            padding-bottom: 10px;
-        }
-        .shopping_cart_checkout {
-            width: 100%;
-        }
-    }
-    .cart_item_image {
-        grid-area: item_image;
-        text-align: center;
-    }
-    .cart_item_description {
-        grid-area: item_description;
-        width: 100%;
-    }
-    .cart_item_nights {
-        grid-area: item_nights;
-        padding: 5px;
-        text-align: center;
-        align-self: center;
-    }
-    .cart_item_total {
-        grid-area: item_total;
-    }
-    .sub_total {
-        grid-area: sub_total;
-    }
-    .item_extras {
-        background-color: cadetblue;
-        grid-area: item_extras;
-    }
+.Cart__productTitle {
+  overflow: hidden;
+  line-height: 25px;
+}
+
+.Cart__productPrice,
+.Cart__productQuantity,
+.Cart__productTotal,
+.Cart__productDel {
+  text-align: center;
+  line-height: 60px;
+}
+
+@media screen and (max-width: 820px) {
+  .Cart__header {
+    display: none;
+  }
+
+  .Cart__product {
+    box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 2fr 2fr 2fr 2fr 2fr 2fr 1fr;
+    grid-template-areas:
+      "img title title title title title del"
+      "img price price quantity total total del";
+  }
+
+  .Cart__productImg {
+    grid-area: img;
+  }
+
+  .Cart__productTitle {
+    grid-area: title;
+  }
+
+  .Cart__productPrice,
+  .Cart__productQuantity,
+  .Cart__productTotal,
+  .Cart__productDel {
+    line-height: initial;
+  }
+
+  .Cart__productPrice {
+    grid-area: price;
+    text-align: right;
+  }
+
+  .Cart__productQuantity {
+    grid-area: quantity;
+    text-align: left;
+  }
+
+  .Cart__productQuantity::before {
+    content: "x";
+  }
+
+  .Cart__productTotal {
+    grid-area: total;
+    text-align: right;
+    color: red;
+  }
+
+  .Cart__productDel {
+    grid-area: del;
+    line-height: 60px;
+    background: #ffc0cb26;
+  }
+}
+
 </style>
 @endsection
 @section('content')
-<div class="shopping_wrapper">
-    <div class="shopping_cart_header">
-        <h2>Shopping Cart</h2>
-    </div>
-    <div class="cart_items">
-        <span class="cart_item_image">
-            <img src="https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png" alt="lot">
-        </span>
-        <div class="cart_item_description">
-            <span class="item_lot_number">
-                <strong>Lot number:1 #####</strong>
-            </span>
-            <span>名稱</span>
-            <span>價錢</span>
-            <span>數量</span>
-            <span>數量</span>
-            <span>數量</span>
-            <span>數量</span>
-
+<div class="container pt-5">
+    <div class="Cart py-5">
+        <div class="Cart__header">
+            <div class="Cart__headerGrid">商品</div>
+            <div class="Cart__headerGrid">單價</div>
+            <div class="Cart__headerGrid">數量</div>
+            <div class="Cart__headerGrid">小計</div>
+            <div class="Cart__headerGrid">刪除</div>
         </div>
-        <span class="cart_item_nights">2 night(s)</span>
-        <span class="cart_item_total">$999,9</span>
-        <button id="delete-LOTID" type="button" class="remove_chart_item glyphicon glyphicon-remove-sign"
-            onclick="EVT.emit('cart_deleteItem',event,true)"></button>
+        @foreach ($items as $item)
+            <div class="Cart__product">
+                <div class="Cart__productGrid Cart__productImg"><img src="{{asset('/storage/'.$item->img)}}" alt=""></div>
+                <div class="Cart__productGrid Cart__productTitle">
+                    {{$item->name}}
+                </div>
+                <div class="Cart__productGrid Cart__productPrice">{{$item->price}}</div>
+                <div class="Cart__productGrid Cart__productQuantity">{{$item->quantity}}</div>
+                <div class="Cart__productGrid Cart__productTotal">{{$item->price*$item->quantity}}</div>
+                <div class="Cart__productGrid Cart__productDel">&times;</div>
+            </div>
+        @endforeach
     </div>
-
-    <br>
-    <div class="totals">
-        <span>Subtotal:</span>
-        <span>$9,999.99</span>
-    </div>
-    </div>
-    <div class="totals">
-        <strong>Total:</strong>
-        </>
-        <strong>$9,999.99</strong>
-    </div>
-    <div>
-        <button class="shopping_cart_checkout">Checkout</button>
-    </div>
-</div>
 </div>
 
 @endsection
 
 @section('js')
 <script>
-    $("button").on('click',function(event){
 
-    if($(event.target).closest('.cart_items').height()<150){
-                //desktop view
-                $(event.target).closest('.cart_items').addClass('animate_delete_cart_item');
-            }
-            else{
-                //mobile view
-                $(event.target).closest('.cart_items').addClass('animate_delete_cart_item_mobile');
-
-            }
-
-            //remove item once animation done.
-            setTimeout (function(){
-                //remove item
-                $(event.target).closest('.cart_items').remove();
-                },600);
-    })
 </script>
 @endsection

@@ -54,17 +54,17 @@ class FrontController extends Controller
         return view('front/Product_content');
     }
 
-    public function add_cart(){
+    public function add_cart(Request $request){
         $productId = 1;
         $Product = Products::find($productId); // assuming you have a Product model with id, name, description & price
-        $rowId = 456; // generate a unique() row ID
+        $rowId = 222; // generate a unique() row ID
         $userID = Auth::user()->id; // the user ID to bind the cart contents
         // add the product to cart
         \Cart::session($userID)->add(array(
             'id' => $rowId,
             'name' => $Product->title,
             'price' => $Product->price,
-            'quantity' => 4,
+            'quantity' => $request->qty,
             'attributes' => array(),
             'associatedModel' => $Product
         ));
@@ -73,6 +73,6 @@ class FrontController extends Controller
     public function cart_total(){
         $userID = Auth::user()->id;
         $items = \Cart::session($userID)->getContent();
-        return view('front/cart_total');
+        return view('front/cart_total',compact('items'));
     }
 }

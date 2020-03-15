@@ -128,13 +128,13 @@
                     @csrf
                     <div class="product_qty">
                         <a id="minus" href="#">-</a>
-                        <input type="number" id="value" value="1">
+                        <input type="number" id="value" name="qty" value="1">
                         <a id="plus" href="#">+</a>
                     </div>
 
                     <div class="product_total">
-                        <input type="text" id="capacity" value="3GB+32GB" hidden>
-                        <input type="text" id="selectColor" value="紅" hidden>
+                        <input type="text" id="capacity" name="capacity" value="3GB+32GB" hidden>
+                        <input type="text" id="selectColor" name="selectColor" value="紅" hidden>
                         <span id="total"></span>
                     </div>
                     <span id="total"></span>
