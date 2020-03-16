@@ -91,10 +91,10 @@
                         </div>
                         <div class="d-flex">
                             <div class="mx-3">
-                                {!! htmlFormSnippet() !!}
-                                @error('g-recaptcha-response')
+                                {{-- {!! htmlFormSnippet() !!} --}}
+                                {{-- @error('g-recaptcha-response')
                                     <div class="alert alert-danger">{{ "Please check reCAPTCHA." }}</div>
-                                @enderror
+                                @enderror --}}
                             </div>
                             <div class="col-md-12 input-group-btn align-center">
                                 <button type="submit" class="btn btn-primary btn-form display-4">SEND FORM</button>

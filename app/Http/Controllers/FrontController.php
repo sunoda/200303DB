@@ -3,8 +3,11 @@ namespace App\Http\Controllers;
 use App\News;
 use App\Contact;
 use App\Products;
+use App\Mail\SendToUser;
+use App\Mail\OrderShipped;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class FrontController extends Controller
 {
@@ -40,9 +43,10 @@ class FrontController extends Controller
             recaptchaFieldName() => recaptchaRuleName()
 
         ]);
-
         $contact = $request->all();
-        Contact::create($contact);
+        $send = Contact::create($contact);
+
+        Mail::to('suno.eeda@gmail.com')->send(new OrderShipped($send));
         return redirect('/');
     }
     public function contactname(){
