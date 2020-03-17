@@ -185,7 +185,6 @@
         var title = $('#title').attr('data-title');
         var capacity = $('.capacity.active').attr('data-capacity');
         var qty = $('#value').attr('value');
-
         var text = $('#total').text(title + ' ' + capacity + '*' + qty);
         console.log($('.capacity.active').attr('data-capacity'));
 

@@ -126,7 +126,12 @@
                     {{$item->name}}
                 </div>
                 <div class="Cart__productGrid Cart__productPrice">{{$item->price}}</div>
-                <div class="Cart__productGrid Cart__productQuantity">{{$item->quantity}}</div>
+                <div class="Cart__productGrid Cart__productQuantity d-flex">
+                    <button id="minus" class="btn btn-small btn-sm">-</button>
+                    <span class="" id="qty">{{$item->quantity}}</span>
+                    <button id="plus" class="btn btn-small btn-sm">+</button>
+
+                </div>
                 <div class="Cart__productGrid Cart__productTotal">{{$item->price*$item->quantity}}</div>
                 <div class="Cart__productGrid Cart__productDel">&times;</div>
             </div>
@@ -138,6 +143,12 @@
 
 @section('js')
 <script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
+    
 </script>
 @endsection

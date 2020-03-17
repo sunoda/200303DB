@@ -41,7 +41,6 @@ class FrontController extends Controller
             'g-recaptcha-response' => 'recaptcha',
             // OR since v4.0.0
             recaptchaFieldName() => recaptchaRuleName()
-
         ]);
         $contact = $request->all();
         $send = Contact::create($contact);
@@ -53,7 +52,6 @@ class FrontController extends Controller
         return 'name';
     }
     public function Product_content(){
-
 
         return view('front/Product_content');
     }
