@@ -80,9 +80,9 @@
             </div>
             <div class="col-6">
                 <div class="product_title">
-                    <h2 id="title" data-title="Redmi Note 8T">Redmi Note 8T</h2>
+                    <h2 id="title" data-title="{{$product->title}}">{{$product->title}}</h2>
                     <div>3GB+32GB, 星際藍</div>
-                    <div>NT$4,599</div>
+                    <div>{{$product->price}}</div>
                 </div>
                 <div class="product_tips">
                     icon 雙倍 該商品可享受雙倍積分
@@ -124,7 +124,7 @@
                         {{-- <input type="text" id='selectColor' value="紅" hidden> --}}
                     </ul>
                 </div>
-                <form method="POST" action="/add_cart">
+                <form method="POST" action="/add_cart/{{$product->id}}">
                     @csrf
                     <div class="product_qty">
                         <a id="minus" href="#">-</a>
@@ -138,7 +138,7 @@
                         <span id="total"></span>
                     </div>
                     <span id="total"></span>
-                    <button type="submit">立即購買</button>
+                    <button type="submit" class="btn btn-primary">立即購買</button>
                 </form>
             </div>
         </div>

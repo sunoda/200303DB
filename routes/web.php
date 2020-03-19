@@ -15,22 +15,29 @@ use App\Http\Controllers\NewsController;
 use Illuminate\Routing\RouteGroup;
 
 Route::get('/', 'FrontController@index');
-Route::get('/Product_content', 'FrontController@Product_content');
 Route::get('/product', 'FrontController@product');
+Route::get('/product/{productID}', 'FrontController@Product_content');
 Route::get('/news', 'FrontController@news');
 Route::get('/news/{id}', 'FrontController@news_content');
 Route::post('/contact_message','FrontController@contact');
-Route::post('/add_cart', 'FrontController@add_cart');
+
+// 購物車
+Route::post('/add_cart/{productID}', 'FrontController@add_cart');
 Route::get('/cart_total', 'FrontController@cart_total');
+Route::post('/cart_update/{cartID}', 'FrontController@cart_update');
+Route::post('/cart_delete/{cartID}', 'FrontController@cart_delete');
+Route::get('/cart_checkout', 'FrontController@cart_checkout');
+
 
 Auth::routes();  //認證
+
 Route::group(['middleware' => ['auth'], 'prefix' => '/home'], function () { //登出後安全保護與加上前綴/home
 // 後台頁面連結
 Route::get('/', 'HomeController@index');
 
-
 // 最新消息
 Route::group(['prefix' => 'news'], function () {
+
 // 列表新增
 Route::get('/', 'NewsController@index');
 Route::get('/create', 'NewsController@create');

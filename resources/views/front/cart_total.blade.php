@@ -104,41 +104,43 @@
     grid-area: del;
     line-height: 60px;
     background: #ffc0cb26;
+    background-color: red
   }
 }
+
+
 
 </style>
 @endsection
 @section('content')
-<div class="container pt-5">
-    <div class="Cart py-5">
-        <div class="Cart__header">
-            <div class="Cart__headerGrid">商品</div>
-            <div class="Cart__headerGrid">單價</div>
-            <div class="Cart__headerGrid">數量</div>
-            <div class="Cart__headerGrid">小計</div>
-            <div class="Cart__headerGrid">刪除</div>
-        </div>
-        @foreach ($items as $item)
-            <div class="Cart__product">
-                <div class="Cart__productGrid Cart__productImg"><img src="{{asset('/storage/'.$item->img)}}" alt=""></div>
-                <div class="Cart__productGrid Cart__productTitle">
-                    {{$item->name}}
-                </div>
-                <div class="Cart__productGrid Cart__productPrice">{{$item->price}}</div>
-                <div class="Cart__productGrid Cart__productQuantity d-flex">
-                    <button id="minus" class="btn btn-small btn-sm">-</button>
-                    <span class="" id="qty">{{$item->quantity}}</span>
-                    <button id="plus" class="btn btn-small btn-sm">+</button>
-
-                </div>
-                <div class="Cart__productGrid Cart__productTotal">{{$item->price*$item->quantity}}</div>
-                <div class="Cart__productGrid Cart__productDel">&times;</div>
+    <div class="container pt-5">
+        <div class="Cart py-5">
+            <div class="Cart__header">
+                <div class="Cart__headerGrid">商品</div>
+                <div class="Cart__headerGrid">單價</div>
+                <div class="Cart__headerGrid">數量</div>
+                <div class="Cart__headerGrid">小計</div>
+                <div class="Cart__headerGrid">刪除</div>
             </div>
-        @endforeach
+            @foreach ($items as $item)
+                <div class="Cart__product">
+                    <div class="Cart__productGrid Cart__productImg"><img src="{{asset('/storage/'.$item->img)}}" alt=""></div>
+                    <div class="Cart__productGrid Cart__productTitle">
+                        {{$item->name}}
+                    </div>
+                    <span class="Cart__productGrid Cart__productPrice" data-itemID="{{$item->id}}">{{$item->price}}</span>
+                    <div class="Cart__productGrid Cart__productQuantity d-flex">
+                        <button id="minus" class="btn btn-small btn-sm btn-minus" data-itemID="{{$item->id}}" style="padding:0">-</button>
+                        <span id="qty" class="qty" data-itemID="{{$item->id}}">{{$item->quantity}}</span>
+                        <button id="plus" class="btn btn-small btn-sm btn-plus" data-itemID="{{$item->id}}" style="padding:0">+</button>
+                    </div>
+                    <span class="Cart__productGrid Cart__productTotal" data-itemID="{{$item->id}}">{{$item->price*$item->quantity}}</span>
+                    <button id="delete" class="Cart__productGrid Cart__productDel btn btn-sm" data-itemID="{{$item->id}}">&times;</button>
+                </div>
+            @endforeach
+            <a href="/cart_checkout"><button class="btn btn-block btn-dark mt-3">立即結帳</button></a>
+        </div>
     </div>
-</div>
-
 @endsection
 
 @section('js')
@@ -149,6 +151,71 @@
         }
     });
 
-    
+    $('.btn-minus').click(function(){
+        var cartID = $(this).attr('data-itemID');
+        $.ajax({
+            method: 'POST',
+            url: '/cart_update/'+cartID,
+            data: {
+                quantity:-1
+            },
+            success: function (res) {
+                // 網頁同步數量減少
+                var old_value = $(`.qty[data-itemID="${cartID}"]`).text();
+                var new_value = Math.max(parseInt(old_value) - 1 , 1);
+                $(`.qty[data-itemID="${cartID}"]`).text(new_value);
+                // 網頁同步價錢變動
+                var old_total = $(`.Cart__productTotal[data-itemID="${cartID}"]`).text();
+                var price = $(`.Cart__productPrice[data-itemID="${cartID}"]`).text();
+                var new_total = Math.max(parseInt(old_total) - parseInt(price),parseInt(price));
+                $(`.Cart__productTotal[data-itemID="${cartID}"]`).text(new_total);
+            },
+        });
+    })
+    $('.btn-plus').click(function(){
+        var cartID = $(this).attr('data-itemID');
+
+        $.ajax({
+            method: 'POST',
+            url: '/cart_update/'+cartID,
+            data: {
+                quantity:1
+            },
+            success: function (res) {
+                var old_value = $(`.qty[data-itemID="${cartID}"]`).text();
+                var new_value = parseInt(old_value) + 1;
+                Math.max(new_value,0);
+                $(`.qty[data-itemID="${cartID}"]`).text(new_value);
+                var old_total = $(`.Cart__productTotal[data-itemID="${cartID}"]`).text();
+                var price = $(`.Cart__productPrice[data-itemID="${cartID}"]`).text();
+                var new_total = parseInt(old_total) + parseInt(price);
+                $(`.Cart__productTotal[data-itemID="${cartID}"]`).text(new_total);
+            },
+
+        });
+    });
+    $('.Cart__productDel').click(function(){
+        var cartID = $(this).attr('data-itemID');
+        var r=confirm("確定要將商品移出購物車嗎?")
+        if(r==true){
+            $.ajax({
+                method: 'POST',
+                url: '/cart_delete/'+cartID,
+                data: {},
+                success: function (res) {
+                    window.location.reload();
+                },
+            });
+        };
+    });
+
+
+    // $('.Cart__productDel').click(function(){
+    //     var id = $(this).attr('data-itemID');
+    //     console.log(id);
+    // })
+
+
+
 </script>
 @endsection

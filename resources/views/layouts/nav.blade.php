@@ -62,15 +62,20 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link text-white display-4" href="/Product_content">
-                        <span class="mbri-gift mbr-iconfont mbr-iconfont-btn"></span>
-                        Product_content
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link link text-white display-4" href="/product">
                         <span class="mbri-gift mbr-iconfont mbr-iconfont-btn"></span>
                         Product
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link text-white display-4" href="/cart_total">
+                        <span class="mbri-gift mbr-iconfont mbr-iconfont-btn"></span>
+                            <?php
+                                $cartCollection = Cart::getContent();
+                                $count = $cartCollection->count();
+                            ?>
+
+                        ShoppingCart({{$count}})
                     </a>
                 </li>
                 <li class="nav-item">

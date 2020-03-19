@@ -18,6 +18,7 @@
         "league/flysystem-aws-s3-v3": "~1.0",
         "league/flysystem-rackspace": "~1.0",
         "league/flysystem-sftp": "~1.0",
+        "tsaiyihua/laravel-ecpay": "^2.2",
         "wildbit/swiftmailer-postmark": "^3.1"
     },
     "require-dev": {
