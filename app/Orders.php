@@ -17,18 +17,18 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $created_at
  * @property string $updated_at
  */
-class Order extends Model
+class Orders extends Model
 {
     /**
      * The table associated with the model.
-     * 
+     *
      * @var string
      */
     protected $table = 'orders';
 
     /**
      * The "type" of the auto-incrementing ID.
-     * 
+     *
      * @var string
      */
     protected $keyType = 'integer';
@@ -36,6 +36,9 @@ class Order extends Model
     /**
      * @var array
      */
-    protected $fillable = ['user_id', 'recipient_name', 'recipient_phone', 'recipient_address', 'shipment_time', 'total_price', 'shipment_status', 'payment_status', 'created_at', 'updated_at'];
+    protected $fillable = ['user_id','order_no' ,'recipient_name', 'recipient_phone', 'recipient_address', 'shipment_time', 'total_price', 'shipment_status','shipment_price', 'payment_status', 'created_at', 'updated_at'];
 
+    public function OrderDetails(){
+        return $this->hasMany('App\OrderDeails')->orderBy('sort','desc');
+    }
 }

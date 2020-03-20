@@ -27,6 +27,13 @@ Route::get('/cart_total', 'FrontController@cart_total');
 Route::post('/cart_update/{cartID}', 'FrontController@cart_update');
 Route::post('/cart_delete/{cartID}', 'FrontController@cart_delete');
 Route::get('/cart_checkout', 'FrontController@cart_checkout');
+Route::post('/cart_checkout', 'FrontController@post_cart_checkout');
+
+Route::prefix('cart_ecpay')->group(function(){
+    Route::post('notify', 'FrontController@notifyUrl')->name('notify');
+    Route::post('return', 'FrontController@returnUrl')->name('return');
+});
+
 
 
 Auth::routes();  //認證

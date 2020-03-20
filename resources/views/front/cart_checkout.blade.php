@@ -139,7 +139,7 @@
                 <div class="Cart__headerGrid">
                     <div>運費：@if(Cart::getTotal() > 30000)免運費 @else 120元 @endif</div>
                     <?php
-                        if (Cart::getTotal() > 300000) {
+                        if (Cart::getTotal() > 30000) {
                             $total_price = Cart::getTotal();
                         } else {
                             $total_price = Cart::getTotal()+120;
@@ -149,7 +149,8 @@
                 </div>
             </div>
             <h2 class="mt-5">收件人資訊</h2>
-            <form action="" method="post">
+            <form action="/cart_checkout" method="post">
+                @csrf
                 <div class="input-group input-group-lg my-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text">　姓名　</span>
@@ -174,8 +175,8 @@
                     </div>
                     <input type="text" class="form-control" name="shipment_time">
                 </div>
+                <button type="submit" class="btn btn-primary">前往結帳</button>
             </form>
-            <button type="submit" class="btn btn-primary">前往結帳</button>
         </div>
     </div>
 @endsection
