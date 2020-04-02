@@ -50,11 +50,6 @@
                                 </div>
                             </div>
                         </div>
-
-                                {!! htmlFormSnippet() !!}
-                                @error('g-recaptcha-response')
-                                    <div class="alert alert-danger">{{ "Check failed." }}</div>
-                                @enderror
                             <div class="form-group row mb-0">
                                 <div class="col-md-12 offset-md-6 mt-3">
                                     <button type="submit" class="btn btn-primary">
