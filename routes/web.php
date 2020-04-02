@@ -38,7 +38,7 @@ Route::prefix('cart_ecpay')->group(function(){
 
 Auth::routes();  //認證
 
-Route::group(['middleware' => ['auth'], 'prefix' => '/home'], function () { //登出後安全保護與加上前綴/home
+Route::group(['middleware' => ['admin'], 'prefix' => '/home'], function () { //登出後安全保護與加上前綴/home
 // 後台頁面連結
 Route::get('/', 'HomeController@index');
 
@@ -64,7 +64,7 @@ Route::group(['prefix' => 'product'], function () {
 // 新增
 Route::get('/', 'ProductController@index');
 Route::get('/create', 'ProductController@create');
-// 商編輯
+// 商品編輯
 Route::post('/store', 'ProductController@store');
 Route::get('/edit/{id}', 'ProductController@edit');
 Route::post('/update/{id}', 'ProductController@update');

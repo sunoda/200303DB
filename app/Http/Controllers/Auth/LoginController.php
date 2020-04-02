@@ -48,7 +48,7 @@ class LoginController extends Controller
             'g-recaptcha-response' => 'recaptcha',
             // OR since v4.0.0
             recaptchaFieldName() => recaptchaRuleName()
-            
+
         ]);
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
