@@ -174,7 +174,6 @@
     })
     $('.btn-plus').click(function(){
         var cartID = $(this).attr('data-itemID');
-
         $.ajax({
             method: 'POST',
             url: '/cart_update/'+cartID,
